@@ -34,12 +34,12 @@ void MeasureSensors(void) {
 }
 
 static void PowerUpCO2Sensor(void) {
-    TRISCbits.TRISC1 = 0;
-    PORTCbits.RC1 = 1;
+    TRISBbits.TRISB2 = 0;
+    PORTBbits.RB2 = 1;
 }
 
 static void PowerDownCO2Sensor(void) {
-    PORTCbits.RC1 = 0;
+    PORTBbits.RB2 = 0;
 }
 
 static void PowerUpSHT11(void) {
