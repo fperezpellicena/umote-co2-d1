@@ -34,6 +34,7 @@ void AdcConvert(uint8_t channel, uint16_t* result) {
     ADCON0bits.ADON = 1;    // Power on
     AdcCalibrate();
     while (i--) {
+        ADRES = 0;
         ADCON0bits.GO = 1;
         tmp += AdcReadValue();
     }
@@ -47,7 +48,7 @@ void AdcConvert(uint8_t channel, uint16_t* result) {
 static void AdcCalibrate(void) {
     ADCON1bits.ADCAL = 1;
     ADCON0bits.GO = 1;
-    while (ADCON0bits.GO);
+    while (ADCON0bits.NOT_DONE);
     ADCON1bits.ADCAL = 0;
 }
 
@@ -55,6 +56,6 @@ static void AdcCalibrate(void) {
  * Lee el valor del conversor.
  */
 static uint16_t AdcReadValue(void) {
-    while (ADCON0bits.GO);
-    return (((uint16_t) ADRESH) << 8) | (ADRESL);
+    while (ADCON0bits.NOT_DONE);
+    return ADRES;
 }

@@ -13,6 +13,6 @@ void Co2D1Measure(uint16_t* data) {
 }
 
 static void Co2D1InitIO(void) {
-    CO2D1_OUT_CNF = 0;  // Analog function
-    CO2D1_OUT_DDR = 1;  // Input pin
+    ANCON1bits.PCFG10 = 0;
+    TRISBbits.TRISB1 = 1;
 }
