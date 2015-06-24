@@ -25,6 +25,7 @@ void SendMeasures(void) {
     XBeeCreatePacket(&packet);
     PayloadInit(&payload);
     PayloadPutByte(&payload, MOBILE);
+    PayloadPutByte(&payload, sizeof(SENSORS));
     PayloadPutString(&payload, SENSORS);
     PayloadPutWord(&payload, shtData.temperature.i);
     PayloadPutWord(&payload, shtData.humidity.i);
