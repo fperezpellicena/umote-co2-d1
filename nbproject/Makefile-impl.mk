@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=umote-co2-d1.X
+PROJECTNAME=umote-co2-d1
 
 # Active Configuration
 DEFAULTCONF=default

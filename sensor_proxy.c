@@ -30,7 +30,7 @@ void MeasureSensors(void) {
     // CO2D1 sequence
     PowerUpCO2Sensor();
     Co2D1Measure(&co2d1Data);
-    PowerDownCO2Sensor();
+    //PowerDownCO2Sensor();
 }
 
 static void PowerUpCO2Sensor(void) {
