@@ -8,11 +8,14 @@ void Co2D1Init() {
     Co2D1InitIO();
 }
 
-void Co2D1Measure(uint16_t* data) {
-    AdcConvert(CO2D1_OUT_AN_CH, data);
+void Co2D1Measure(Co2D1Data* data) {
+    AdcConvert(CO2D1_SENSE_AN_CH, data->co2sense);
+    AdcConvert(CO2D1_REF_AN_CH, data->co2sense);
 }
 
 static void Co2D1InitIO(void) {
     ANCON1bits.PCFG10 = 0;
     TRISBbits.TRISB1 = 1;
+    ANCON1bits.PCFG9 = 0;
+    TRISBbits.TRISB3 = 1;
 }

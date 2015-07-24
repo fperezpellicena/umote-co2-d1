@@ -15,7 +15,7 @@ static void MeasureCO2(void);
 static void DisableCO2(void);
 
 ShtData shtData;
-uint16_t co2d1Data;
+Co2D1Data co2d1Data;
 
 void SensorProxyInit(void) {
     Sht11Init();
