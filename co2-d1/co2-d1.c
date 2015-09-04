@@ -9,8 +9,8 @@ void Co2D1Init() {
 }
 
 void Co2D1Measure(Co2D1Data* data) {
-    AdcConvert(CO2D1_SENSE_AN_CH, data->co2sense);
-    AdcConvert(CO2D1_REF_AN_CH, data->co2sense);
+    AdcConvert(CO2D1_SENSE_AN_CH, &data->co2sense);
+    AdcConvert(CO2D1_REF_AN_CH, &data->co2ref);
 }
 
 static void Co2D1InitIO(void) {

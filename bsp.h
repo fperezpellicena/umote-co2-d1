@@ -4,6 +4,7 @@
 #include <xc.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <GenericTypeDefs.h>
 
 #define NO_MOBILE   0
 #define MOBILE      1
