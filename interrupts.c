@@ -2,6 +2,7 @@
 #include "interrupts.h"
 #include "sensor_proxy.h"
 #include "network_proxy.h"
+#include "clkctrl.h"
 
 static volatile uint8_t count = 0;
 
@@ -25,6 +26,8 @@ void EnableInterrupts(void) {
 
 void interrupt HandleInterrupt(void) {
     if (NetworkAwake()) {
+        //Operation Frequency increment.
+        operationFrequencyIntOscCtrl(F8Mhz);
         // Clear network interrupt
         ClearNetworkInterrupt();
         // Gather measurements

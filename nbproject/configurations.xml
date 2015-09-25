@@ -67,6 +67,7 @@
     <Elem>adc/include</Elem>
     <Elem>xbee</Elem>
     <Elem>co2-d1/include</Elem>
+    <Elem>clock/include</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -78,7 +79,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>1.35</languageToolchainVersion>
+        <languageToolchainVersion>1.34</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>
@@ -107,7 +108,7 @@
         <property key="asmlist" value="true"/>
         <property key="define-macros" value=""/>
         <property key="extra-include-directories"
-                  value="sht\include;adc\include;xbee\include;co2-d1\include"/>
+                  value="sht\include;adc\include;xbee\include;co2-d1\include;clock\include"/>
         <property key="identifier-length" value="255"/>
         <property key="operation-mode" value="free"/>
         <property key="opt-xc8-compiler-strict_ansi" value="false"/>

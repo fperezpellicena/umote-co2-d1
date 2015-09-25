@@ -2,7 +2,7 @@
 #include "interrupts.h"
 #include "sensor_proxy.h"
 #include "xbee/../digi_api.h"
-
+#include "clock/include/clkctrl.h"
 static void Idle(void);
 
 int main() {
@@ -11,7 +11,8 @@ int main() {
     SensorProxyInit();
     EnableInterrupts();
     while (1) {
-        //        Idle();
+        operationFrequencyIntOscCtrl(F31Khz);
+        Idle();
     }
     return 0;
 }
