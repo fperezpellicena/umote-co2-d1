@@ -2,7 +2,7 @@
 #include "interrupts.h"
 #include "sensor_proxy.h"
 #include "network_proxy.h"
-#include "clkctrl.h"
+#include "clock/include/clkctrl.h"
 
 static volatile uint8_t count = 0;
 

@@ -3,6 +3,7 @@
 #include "sensor_proxy.h"
 #include "xbee/../digi_api.h"
 #include "clock/include/clkctrl.h"
+
 static void Idle(void);
 
 int main() {
