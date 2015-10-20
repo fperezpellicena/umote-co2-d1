@@ -3,17 +3,50 @@
 #include "sensor_proxy.h"
 #include "xbee/../digi_api.h"
 #include "clock/include/clkctrl.h"
-
+#include "opController.h"
+#include "power.h"
 static void Idle(void);
 
 int main() {
+    
+//    if (DEEP_SLEEP_WAKE_UP){
+//        
+//    }
+
+
     BspInit();
+    ClearInterrupts();
+    DisableInterrupts();
+    EnableDeepSleepInterrupt();
+    // XBeeJoin(); ESTE AHI QUE SACARLO DEL xbee INIT PARA TRABAJAR EN DEEP SLEEP
     XBeeInit();
     SensorProxyInit();
-    EnableInterrupts();
+
+    //    EnableInterrupts();
     while (1) {
-        operationFrequencyIntOscCtrl(F31Khz);
-        Idle();
+#if SLEEP_MODE == DEEP_SLEEP
+        if (XBEE_ON_DS_AWAKE) {
+            OnWakeUp();
+        } else if (ON_DS_MCLR) {
+            OnMclr();
+        } else if (ON_DS_WDT) {
+            OnDsWdtWakeUp();
+        } else if (ON_DS_ULP){
+            WDTCONbits.DS = 0;// quiza desierta por este modo y hay q 
+            // configurarlo en como salida antes de ponerlo a dormir.
+        } else if (ON_DS_RTC_ALARM){
+            WDTCONbits.DS = 0;
+        } else if (POWER_UP){
+            OnPowerUp();
+        } else if (DS_FAULT){
+            WDTCONbits.DS = 0;
+            DSWAKELbits.DSFLT=0;
+            while(1);
+        }
+        PowerDeepSleep();
+#endif
+        //        operationFrequencyIntOscCtrl(F31Khz);
+        //        Idle();
     }
     return 0;
 }
@@ -37,10 +70,10 @@ int main() {
 static void Idle(void) {
     // FIXME ¿Should check for timer 1 status?
     OSCCONbits.IDLEN = 1;
-    // If RC_RUN is not enabled(SCS = '11') then set SCS = 0x11
-    if (OSCCONbits.SCS != 3) {
-        OSCCONbits.SCS = 3;
-    }
+    //    // If RC_RUN is not enabled(SCS = '11') then set SCS = 0x11
+    //    if (OSCCONbits.SCS != 3) {
+    //        OSCCONbits.SCS = 3;
+    //    }
     Sleep();
     Nop();
 }
